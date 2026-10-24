@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "GrpcServer";
+
+package contador;
+
+service Contador {
+  rpc Incrementar (google.protobuf.Empty) returns (RespuestaContador);
+  rpc Acumular (stream SolicitudContador) returns (RespuestaContador);
+  rpc CuentaRegresiva (google.protobuf.Empty) returns (stream RespuestaContador);
+  rpc ContadorEnVivo (stream SolicitudContador) returns (stream RespuestaContador);
+}
+
+message SolicitudContador {
+  int32 cantidad = 1;
+}
+
+message RespuestaContador {
+  int32 valor = 1;
+}
