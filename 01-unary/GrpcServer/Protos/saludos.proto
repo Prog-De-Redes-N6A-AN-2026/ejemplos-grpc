@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "GrpcServer";
+
+package saludos;
+
+service Saludador {
+  rpc Saludar (SolicitudSaludo) returns (RespuestaSaludo);
+  rpc SumarNumeros (SolicitudSuma) returns (RespuestaSuma);
+  rpc ObtenerListaUsuarios (google.protobuf.Empty) returns (RespuestaListaUsuarios);
+}
+
+message SolicitudSuma {
+  int32 numero_a = 1;
+  int32 numero_b = 2;
+}
+
+message RespuestaSuma {
+  int32 suma = 1;
+}
+
+message RespuestaListaUsuarios {
+  repeated Usuario usuarios = 1;
+  optional int32 edad_maxima = 2;
+}
+
+enum Genero {
+  MASCULINO = 0;
+  FEMENINO = 1;
+  OTRO = 2;
+}
+
+message Usuario {
+  string nombre = 1;
+  int32 edad = 2;
+  Genero genero = 3;
+}
+
+message SolicitudSaludo {
+  string nombre = 1;
+}
+
+message RespuestaSaludo {
+  string mensaje = 1;
+}
