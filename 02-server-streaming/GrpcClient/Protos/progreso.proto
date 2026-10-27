@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcProgress";
+
+package progreso;
+
+service Progreso {
+  rpc MostrarProgreso (Vacio) returns (stream TiempoRestante);
+}
+
+message Vacio {
+}
+
+message TiempoRestante {
+  int32 minutos_restantes = 1;
+}
