@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "GrpcErrores";
+
+package calculadora;
+
+service Calculadora {
+  rpc Dividir (SolicitudDivision) returns (RespuestaDivision);
+  rpc OperacionLenta (google.protobuf.Empty) returns (RespuestaOperacion);
+}
+
+message SolicitudDivision {
+  double numerador = 1;
+  double denominador = 2;
+}
+
+message RespuestaDivision {
+  double resultado = 1;
+}
+
+message RespuestaOperacion {
+  string mensaje = 1;
+}
