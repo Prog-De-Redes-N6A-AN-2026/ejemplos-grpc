@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "GrpcAutenticacion";
+
+package autenticacion;
+
+service Autenticacion {
+  rpc IniciarSesion (SolicitudLogin) returns (RespuestaLogin);
+  rpc ObtenerPerfil (google.protobuf.Empty) returns (RespuestaPerfil);
+}
+
+message SolicitudLogin {
+  string usuario = 1;
+  string contrasena = 2;
+}
+
+message RespuestaLogin {
+  string token = 1;
+  string mensaje = 2;
+}
+
+message RespuestaPerfil {
+  string usuario = 1;
+  string mensaje = 2;
+}
